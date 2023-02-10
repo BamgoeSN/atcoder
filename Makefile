@@ -1,5 +1,3 @@
-MAKEFLAGS += --silent
-
 PROJECT = rust-ps
 SOURCE = ./src/main.rs
 TARGET = ./target/debug/$(PROJECT)
@@ -19,9 +17,6 @@ all: $(TARGET)
 run: $(RELEASE)
 	$(BACKTRACE) $^ < $(INPUT)
 
-at:
-	cargo +1.42.0 run
-
 perf: $(RELEASE)
 	sudo operf $^ < $(INPUT)
 	opannotate --source > $(ANALYZE)
@@ -30,7 +25,7 @@ memchk: $(TARGET)
 	valgrind --leak-check=full --show-leak-kinds=all --log-file=$(MEMCHK) -v --error-limit=no $^ < $(INPUT)
 
 $(TARGET): $(SOURCE)
-	cargo build
+	cargo +1.42.0 build
 
 $(RELEASE): $(SOURCE)
-	cargo build --release
+	cargo +1.42.0 build --release
