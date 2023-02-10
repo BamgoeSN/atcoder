@@ -15,8 +15,6 @@ fn main() -> i32 {
     macro_rules! outln { ($($arg:tt)*) => { writeln!(wr, $($arg)*).ok(); }; }
 
     // Main
-    let x: i32 = sc.next();
-    println!("{}", x);
 
     wr.flush().unwrap();
     0
